@@ -1,4 +1,4 @@
-package com.almissbah.articles.ui.gallery
+package com.almissbah.articles.ui.splash
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.almissbah.articles.R
 
-class GalleryFragment : Fragment() {
+class SplashFragment : Fragment() {
 
-    private lateinit var galleryViewModel: GalleryViewModel
+    private lateinit var splashViewModel: SplashViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_gallery, container, false)
-        val textView: TextView = root.findViewById(R.id.text_gallery)
-        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
+        splashViewModel =
+                ViewModelProviders.of(this).get(SplashViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_splash, container, false)
+        val textView: TextView = root.findViewById(R.id.text_slideshow)
+        splashViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
