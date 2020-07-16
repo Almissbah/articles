@@ -1,4 +1,4 @@
-package com.almissbah.articles.ui.Details
+package com.almissbah.articles.ui.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

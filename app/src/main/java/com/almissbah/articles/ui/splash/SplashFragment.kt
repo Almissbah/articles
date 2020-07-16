@@ -9,10 +9,34 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.almissbah.articles.R
+import com.almissbah.articles.ui.base.ArticlesFragment
 
-class SplashFragment : Fragment() {
+class SplashFragment : ArticlesFragment() {
 
     private lateinit var splashViewModel: SplashViewModel
+    override fun initViewModel() {
+        TODO("Not yet implemented")
+    }
+
+    override fun initViews() {
+        TODO("Not yet implemented")
+    }
+
+    override fun subscribe() {
+        TODO("Not yet implemented")
+    }
+
+    override fun unSubscribe() {
+        TODO("Not yet implemented")
+    }
+
+    override fun showLoading() {
+        TODO("Not yet implemented")
+    }
+
+    override fun hideLoading() {
+        TODO("Not yet implemented")
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
