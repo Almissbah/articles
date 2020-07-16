@@ -14,10 +14,6 @@ abstract class ArticlesFragment : DaggerFragment() {
 
     abstract fun unSubscribe()
 
-    abstract fun showLoading()
-
-    abstract fun hideLoading()
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initViewModel()

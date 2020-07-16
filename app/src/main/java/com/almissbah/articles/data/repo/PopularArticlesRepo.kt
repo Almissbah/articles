@@ -6,9 +6,9 @@ import com.almissbah.articles.data.remote.model.PopularArticlesRequest
 import io.reactivex.Observable
 import retrofit2.Response
 
-class ArticlesRepo(
+class PopularArticlesRepo(
     private val popularArticlesApiService: PopularArticlesApiService
-) : ArticlesRepository {
+) : PopularArticlesRepository {
 
     override fun getPopularArticles(request: PopularArticlesRequest): Observable<Response<PopularArticlesApiResponse>> {
         return popularArticlesApiService.getArticles(request.section, request.period.value)

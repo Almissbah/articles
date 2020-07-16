@@ -5,6 +5,6 @@ import com.almissbah.articles.data.remote.model.PopularArticlesRequest
 import io.reactivex.Observable
 import retrofit2.Response
 
-interface ArticlesRepository {
+interface PopularArticlesRepository {
     fun getPopularArticles(request:PopularArticlesRequest):  Observable<Response<PopularArticlesApiResponse>>
 }

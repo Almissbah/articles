@@ -4,52 +4,53 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.almissbah.articles.R
 import com.almissbah.articles.ui.base.ArticlesFragment
+import javax.inject.Inject
 
 class SplashFragment : ArticlesFragment() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     private lateinit var splashViewModel: SplashViewModel
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_splash, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        splashViewModel.onActivityCreated()
+    }
+
     override fun initViewModel() {
-        TODO("Not yet implemented")
+        splashViewModel =
+            ViewModelProviders.of(
+                this,
+                viewModelFactory
+            )[SplashViewModel::class.java]
     }
 
     override fun initViews() {
-        TODO("Not yet implemented")
     }
 
+
     override fun subscribe() {
-        TODO("Not yet implemented")
+        splashViewModel.action.observe(viewLifecycleOwner, Observer {
+            findNavController().navigate(R.id.action_nav_splash_to_nav_home)
+        })
     }
 
     override fun unSubscribe() {
-        TODO("Not yet implemented")
-    }
-
-    override fun showLoading() {
-        TODO("Not yet implemented")
-    }
-
-    override fun hideLoading() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        splashViewModel =
-                ViewModelProviders.of(this).get(SplashViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_splash, container, false)
-        val textView: TextView = root.findViewById(R.id.text_slideshow)
-        splashViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        splashViewModel.unSubscribe()
     }
 }

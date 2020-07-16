@@ -4,38 +4,39 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.almissbah.articles.R
 import com.almissbah.articles.ui.base.ArticlesFragment
+import com.almissbah.articles.ui.base.HasLoading
+import javax.inject.Inject
 
-class HomeFragment : ArticlesFragment() {
+class HomeFragment : ArticlesFragment(), HasLoading {
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var homeViewModel: HomeViewModel
     override fun initViewModel() {
-        TODO("Not yet implemented")
+        homeViewModel =
+            ViewModelProviders.of(
+                this,
+                viewModelFactory
+            )[HomeViewModel::class.java]
     }
 
     override fun initViews() {
-        TODO("Not yet implemented")
     }
 
     override fun subscribe() {
-        TODO("Not yet implemented")
     }
 
     override fun unSubscribe() {
-        TODO("Not yet implemented")
     }
 
     override fun showLoading() {
-        TODO("Not yet implemented")
     }
 
     override fun hideLoading() {
-        TODO("Not yet implemented")
     }
 
     override fun onCreateView(
@@ -43,12 +44,6 @@ class HomeFragment : ArticlesFragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-
-        })
-        return root
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 }

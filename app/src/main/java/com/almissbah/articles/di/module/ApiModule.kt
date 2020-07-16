@@ -43,9 +43,7 @@ object ApiModule {
     @Singleton
     @JvmStatic
     fun provideHttpClient(
-        cache: Cache,
-        httpLoggingInterceptor: HttpLoggingInterceptor,
-        requestInterceptor: RequestInterceptor
+        httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient {
         val okHttp =
             OkHttpClient().newBuilder()
@@ -53,7 +51,7 @@ object ApiModule {
                 .readTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor(httpLoggingInterceptor)
-                .addInterceptor(requestInterceptor)
+                .addInterceptor(RequestInterceptor())
 
         if (ENABLE_LOG) okHttp.addInterceptor(httpLoggingInterceptor)
 

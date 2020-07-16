@@ -1,7 +1,8 @@
 package com.almissbah.articles.di.module
 
 import com.almissbah.articles.data.remote.PopularArticlesApiService
-import com.almissbah.articles.data.repo.ArticlesRepo
+import com.almissbah.articles.data.repo.PopularArticlesRepo
+import com.almissbah.articles.data.repo.PopularArticlesRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -14,8 +15,8 @@ object RepoModule {
     @JvmStatic
     fun provideAppRepository(
         articlesApiService: PopularArticlesApiService
-    ): ArticlesRepo {
-        return ArticlesRepo(
+    ): PopularArticlesRepository {
+        return PopularArticlesRepo(
             articlesApiService
         )
     }
