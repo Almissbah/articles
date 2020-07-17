@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(private val popularArticlesRepository: P
 
     enum class Action { SHOW_LOADING, SHOW_ARTICLES_LIST, SHOW_CONNECTION_ERROR, SHOW_AUTH_ERROR }
 
-    private var disposable: Disposable? = null
+    private var mDisposable: Disposable? = null
     private val _articles = MutableLiveData<Resource<List<Article>, Action>>()
     val articles: LiveData<Resource<List<Article>, Action>> = _articles
 
@@ -96,23 +96,21 @@ class HomeViewModel @Inject constructor(private val popularArticlesRepository: P
         request: PopularArticlesRequest,
         callback: RepoCallback<PopularArticlesApiResponse>
     ) {
+        val callbackWrapper = CallbackWrapper(object :
+            CallbackWrapper.HttpHandler<PopularArticlesApiResponse>(callback) {
+            override fun onSuccess(t: PopularArticlesApiResponse?) {
+                callback.onResult(Resource(t, Resource.Status.SUCCESS, ""))
+            }
+        })
+        mDisposable = callbackWrapper
         popularArticlesRepository.getPopularArticles(request).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(CallbackWrapper(object :
-                CallbackWrapper.HttpHandler<PopularArticlesApiResponse>(callback) {
-                override fun onSuccess(t: PopularArticlesApiResponse?) {
-                    callback.onResult(Resource(t, Resource.Status.SUCCESS, ""))
-                }
-
-                override fun onCreated(t: PopularArticlesApiResponse?) {
-                }
-
-            }))
+            .subscribe(callbackWrapper)
 
     }
 
     fun unSubscribe() {
-
+        mDisposable?.dispose()
     }
 
     fun retry() {
