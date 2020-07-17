@@ -10,7 +10,7 @@ and	shows article	details	when	items	on the	list	are	tapped.
 
 ## App architecture
 Based on mvvm architecture and repository pattern.
-
+![repo pattren image](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
 ### The app includes the following main components:
  
 * A web API service.
