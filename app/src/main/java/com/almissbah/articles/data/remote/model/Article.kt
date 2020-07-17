@@ -1,6 +1,5 @@
 package com.almissbah.articles.data.remote.model
 
-import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class Article(
@@ -8,15 +7,10 @@ data class Article(
     val url: String,
     val byline: String,
     val abstract: String,
+    val source: String,
+    @SerializedName("updated") val updatedAt: String,
+    val section: String,
+    @SerializedName("subsection") val subSection: String,
+    @SerializedName("adx_keywords") val keywords: String, val media: List<Media>,
     @SerializedName("published_date") val publishedDate: String
-) {
-    companion object {
-        fun fromString(string: String): Article? {
-            return Gson().fromJson(string, Article::class.java)
-        }
-    }
-
-    override fun toString(): String {
-        return Gson().toJson(this).toString()
-    }
-}
+)
