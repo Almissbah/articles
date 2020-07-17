@@ -36,8 +36,8 @@ class ArticlesUtils {
 
         fun trimArticleTitle(title: String): String {
             var newTitle = title
-            if (title.length > 100) {
-                newTitle = title.substring(0, 100) + ".."
+            if (title.length > 60) {
+                newTitle = title.substring(0, 60) + "..."
             }
             return newTitle
         }

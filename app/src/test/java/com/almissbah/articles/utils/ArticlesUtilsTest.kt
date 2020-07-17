@@ -11,6 +11,9 @@ class ArticlesUtilsTest {
                 "\"By Mohammed\",\"abstract\":\"Abstract\",\"source\":\"Android Studio\",\"updated\":\"Today\"," +
                 "\"section\":\"Articles\",\"subsection\":\"Fun\",\"adx_keywords\":\"Some Keywords\",\"media\":[]," +
                 "\"published_date\":\"Some date\"}"
+    private val title =
+        "Some long long long long long long long long long long long long long long long long long long long long title"
+    private val shortTitle = "Title"
 
     @Test
     fun test_getArticleDetailsFromArticleObject() {
@@ -33,4 +36,14 @@ class ArticlesUtilsTest {
         val newArticle = ArticlesUtils.getFromJsonString(stringArticle)
         assertEquals(newArticle?.title, article.title)
     }
+
+
+    @Test
+    fun test_trimArticleTitle() {
+        val newArticle = ArticlesUtils.trimArticleTitle(title)
+        assertEquals(newArticle.length, 63)
+        val newArticle2 = ArticlesUtils.trimArticleTitle(shortTitle)
+        assertEquals(newArticle2.length, 5)
+    }
+
 }

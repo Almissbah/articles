@@ -11,6 +11,7 @@ import com.almissbah.articles.R
 import com.almissbah.articles.data.remote.model.Article
 import com.almissbah.articles.databinding.ArticlesListItemBinding
 import com.almissbah.articles.utils.AppUtils
+import com.almissbah.articles.utils.ArticlesUtils
 import com.bumptech.glide.Glide
 
 
@@ -57,7 +58,7 @@ class ArticlesAdapter :
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article: Article = mList[holder.adapterPosition]
         holder.binding.article = article
-
+        holder.binding.articleTitle.text = ArticlesUtils.trimArticleTitle(article.title)
         if (article.media.isNotEmpty() && article.media.last().metaData.isNotEmpty()) {
             val url = article.media.last().metaData.last().url
             if (AppUtils.isValidUrl(url))
