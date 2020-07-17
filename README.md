@@ -45,6 +45,7 @@ Based on mvvm architecture and repository pattern.
 ### Notes 
 * For generating covarage reports launch gradle window from android studio's side bar and run the following command:
    gradle :app:createDebugCoverageReport
+* launch index.html in the dir (project_location\app\build\reports\coverage\debug) to show the covarge report.
 * To build and run the app, clone the repo into a new android studio project and build the code, then lanuch it on any android phone.
 * Unit tests are created for ArticlesUtils, AppUtils and Sample espresso tests are created for MainActivity.
 
