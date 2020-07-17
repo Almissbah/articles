@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.almissbah.articles.utils.ArticlesUtils.Companion" />
+
         <variable
             name="article"
             type="com.almissbah.articles.data.remote.model.Article" />
@@ -38,10 +40,11 @@
 
         <TextView
             android:id="@+id/byline"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="start"
             android:text="@{article.byline.trim()}"
+            app:layout_constraintEnd_toEndOf="@+id/articleTitle"
             app:layout_constraintStart_toStartOf="@+id/articleTitle"
             app:layout_constraintTop_toBottomOf="@+id/articleTitle"
             tools:text="Mohammed" />

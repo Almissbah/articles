@@ -60,7 +60,7 @@ class ArticleDetailsFragment : ArticlesFragment() {
 
     private fun updateUI(it: ArticleDetails) {
         tvKeywords.text = it.keywords
-        tvSection.text = it.section + " " + it.subSection
+        tvSection.text = "${it.section} ${it.subSection}"
         tvSource.text = it.source
         byline.text = it.byline
         articleTitle.text = it.title
@@ -69,11 +69,13 @@ class ArticleDetailsFragment : ArticlesFragment() {
         setArticleImage(it.mediaMetadata)
     }
 
-    private fun setArticleImage(mediaMetadata: MediaMetaData) {
-        Glide
-            .with(this)
-            .load(mediaMetadata.url).fitCenter()
-            .into(articleImage)
+    private fun setArticleImage(mediaMetadata: MediaMetaData?) {
+        if (mediaMetadata != null && (AppUtils.isValidUrl(mediaMetadata.url))) {
+            Glide
+                .with(this)
+                .load(mediaMetadata.url).fitCenter()
+                .into(articleImage)
+        }
     }
 
     override fun unSubscribe() {

@@ -1,5 +1,6 @@
 package com.almissbah.articles
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
@@ -28,5 +29,9 @@ class MainActivity : ArticlesActivity() {
 
     fun updateActionBarTitle(title: String) {
         toolbar.title = title
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
     }
 }

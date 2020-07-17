@@ -4,14 +4,14 @@ import androidx.annotation.Nullable
 import androidx.recyclerview.widget.DiffUtil
 import com.almissbah.articles.data.remote.model.Article
 
-class OrdersDiffCallback(
+class ArticlesDiffCallback(
     private val oldList: MutableList<Article>,
     private val newList: List<Article>
 ) :
     DiffUtil.Callback() {
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList == newList
+        return oldList[oldItemPosition] == newList[newItemPosition]
     }
 
     override fun getOldListSize(): Int {
@@ -23,7 +23,7 @@ class OrdersDiffCallback(
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList == newList
+        return oldList[oldItemPosition].title == newList[newItemPosition].title
     }
 
 

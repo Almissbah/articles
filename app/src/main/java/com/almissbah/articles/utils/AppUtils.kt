@@ -13,8 +13,9 @@ class AppUtils {
             context.startActivity(browserIntent)
         }
 
-        fun isValidUrl(): Boolean {
-            return true
+        fun isValidUrl(url: String): Boolean {
+            val regex = "^((h|H)ttps?:\\/\\/)(www.)?[a-zA-Z0-9-+#\$@\\/?_=&\\.,%]+"
+            return Regex(regex).matches(url)
         }
     }
 }

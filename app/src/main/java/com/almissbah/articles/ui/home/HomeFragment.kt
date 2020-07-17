@@ -27,7 +27,7 @@ class HomeFragment : ArticlesFragment(), HasLoading {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var homeViewModel: HomeViewModel
+    private var homeViewModel: HomeViewModel? = null
 
 
     private val mObserver = Observer<Resource<List<Article>, HomeViewModel.Action>> { t ->
@@ -51,7 +51,7 @@ class HomeFragment : ArticlesFragment(), HasLoading {
         updateToolBarTitle(getString(R.string.home_fragment_title))
         initRvArticles()
         btnRetry.setOnClickListener {
-            homeViewModel.retry()
+            homeViewModel?.retry()
         }
     }
 
@@ -63,7 +63,7 @@ class HomeFragment : ArticlesFragment(), HasLoading {
                 Log.i(tag, "Article title: ${article.title}")
                 findNavController().navigate(
                     R.id.action_nav_home_to_nav_details,
-                    homeViewModel.getNavigationBundle(article)
+                    homeViewModel?.getNavigationBundle(article)
                 )
             }
         }
@@ -109,15 +109,15 @@ class HomeFragment : ArticlesFragment(), HasLoading {
 
 
     override fun subscribe() {
-        homeViewModel.articles.observe(
+        homeViewModel?.articles?.observe(
             this,
             mObserver
         )
-        homeViewModel.getPopularArticlesForLast7Days()
+        homeViewModel?.getPopularArticlesForLast7Days()
     }
 
     override fun unSubscribe() {
-        homeViewModel.unSubscribe()
+        homeViewModel?.unSubscribe()
     }
 
     override fun showLoading() {

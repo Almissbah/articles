@@ -12,6 +12,6 @@ data class ArticleDetails(
     val updatedAt: String,
     val section: String,
     val subSection: String,
-    val keywords: String, val mediaMetadata: MediaMetaData,
+    val keywords: String, val mediaMetadata: MediaMetaData?,
     val publishedDate: String
 )

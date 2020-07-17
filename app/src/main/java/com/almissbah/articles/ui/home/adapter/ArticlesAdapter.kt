@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.almissbah.articles.R
 import com.almissbah.articles.data.remote.model.Article
 import com.almissbah.articles.databinding.ArticlesListItemBinding
+import com.almissbah.articles.utils.AppUtils
 import com.bumptech.glide.Glide
 
 
@@ -57,10 +58,14 @@ class ArticlesAdapter :
         val article: Article = mList[holder.adapterPosition]
         holder.binding.article = article
 
-        Glide
-            .with(holder.binding.root.context)
-            .load(article.media.last().metaData.last().url).fitCenter().circleCrop()
-            .into(holder.binding.ivArticleImage)
+        if (article.media.isNotEmpty() && article.media.last().metaData.isNotEmpty()) {
+            val url = article.media.last().metaData.last().url
+            if (AppUtils.isValidUrl(url))
+                Glide
+                    .with(holder.binding.root.context)
+                    .load(article.media.last().metaData.last().url).fitCenter().circleCrop()
+                    .into(holder.binding.ivArticleImage)
+        }
         holder.binding.root.setOnClickListener {
             mItemClickListener?.onClicked(it, article, position)
         }
@@ -69,7 +74,7 @@ class ArticlesAdapter :
 
     fun setData(newlist: List<Article>) {
         val diffCallback =
-            OrdersDiffCallback(
+            ArticlesDiffCallback(
                 mList,
                 newlist
             )
