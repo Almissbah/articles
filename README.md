@@ -12,6 +12,7 @@ and	shows article	details	when	items	on the	list	are	tapped.
 ## App architecture
 Based on mvvm architecture and repository pattern.
 ![repo pattren image](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
+
 ### The app includes the following main components:
  
 * A web API service.
@@ -45,4 +46,5 @@ Based on mvvm architecture and repository pattern.
 * For generating covarage reports launch gradle window from android studio's side bar and run the following command:
    gradle :app:createDebugCoverageReport
 * To build and run the app, clone the repo into a new android studio project and build the code, then lanuch it on any android phone.
+* Unit tests are created for ArticlesUtils, AppUtils and Sample espresso tests are created for MainActivity.
 
