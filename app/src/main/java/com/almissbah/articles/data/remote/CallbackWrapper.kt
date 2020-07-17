@@ -1,7 +1,7 @@
 package com.almissbah.articles.data.remote
 
-import com.almissbah.articles.data.repo.RepoCallback
 import com.almissbah.articles.data.Resource
+import com.almissbah.articles.data.repo.RepoCallback
 import io.reactivex.observers.DisposableObserver
 import retrofit2.HttpException
 import retrofit2.Response
@@ -57,6 +57,14 @@ open class CallbackWrapper<T>(private val callback: HttpCallback<T>) :
     abstract class HttpHandler<T>(val callback: RepoCallback<T>) : HttpCallback<T> {
         override fun onServerError() {
             callback.onResult(Resource(null, Resource.Status.SERVER_ERROR, ""))
+        }
+
+        override fun onCreated(t: T?) {
+
+        }
+
+        override fun onSuccess(t: T?) {
+            callback.onResult(Resource(t, Resource.Status.SUCCESS, ""))
         }
 
         override fun onFail(t: T?, msg: String) {
