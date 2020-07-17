@@ -1,5 +1,7 @@
 package com.almissbah.articles.ui.home
 
+import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +12,8 @@ import com.almissbah.articles.data.remote.model.PopularArticlesApiResponse
 import com.almissbah.articles.data.remote.model.PopularArticlesRequest
 import com.almissbah.articles.data.repo.PopularArticlesRepository
 import com.almissbah.articles.data.repo.RepoCallback
+import com.almissbah.articles.ui.details.ArticleDetailsFragment
+import com.almissbah.articles.utils.ArticlesUtils
 import com.almissbah.articles.utils.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -113,6 +117,14 @@ class HomeViewModel @Inject constructor(private val popularArticlesRepository: P
 
     fun retry() {
         getPopularArticles(mLastestRequest ?: PopularArticlesRequest())
+    }
+
+    fun getNavigationBundle(article: Article): Bundle {
+        return bundleOf(
+            ArticleDetailsFragment.ARTICLE_ARG_NAME to ArticlesUtils.convertToJsonString(
+                article
+            )
+        )
     }
 
 }

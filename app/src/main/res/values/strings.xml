@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Articles</string>
+    <string name="app_name">Popular Articles</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -11,4 +11,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="home_fragment_title">Most Popular Articles</string>
+    <string name="article_details_title">Article Details</string>
+    <string name="connection_failed_msg">Connection Failed ! please check your internet connection and try again.</string>
+    <string name="auth_failed_msg">Authentication Failed, Please try again later.</string>
 </resources>
