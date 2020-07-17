@@ -7,10 +7,12 @@ and	shows article	details	when	items	on the	list	are	tapped.
 ## App Features
 1. User can list most popular articles in last 7 days.
 2. User can tap on article and view article details.
+3. User can tap read full article in article details screen to launch its URL in web browser .
 
 ## App architecture
 Based on mvvm architecture and repository pattern.
 ![repo pattren image](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
+
 ### The app includes the following main components:
  
 * A web API service.
@@ -39,4 +41,11 @@ Based on mvvm architecture and repository pattern.
 * RxJava for making API calls.
 * Gson for serialisation.
 * Junit 4 for testing.
+
+### Notes 
+* For generating covarage reports launch gradle window from android studio's side bar and run the following command:
+   gradle :app:createDebugCoverageReport
+* launch index.html in the dir (project_location\app\build\reports\coverage\debug) to show the covarge report.
+* To build and run the app, clone the repo into a new android studio project and build the code, then lanuch it on any android phone.
+* Unit tests are created for ArticlesUtils, AppUtils and Sample espresso tests are created for MainActivity.
 
