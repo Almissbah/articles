@@ -18,6 +18,7 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private val popularArticlesRepository: PopularArticlesRepository) :
     ViewModel() {
+    private var mLastestRequest: PopularArticlesRequest? = null
     val tag = "HomeViewModel"
 
     enum class Action { SHOW_LOADING, SHOW_ARTICLES_LIST, SHOW_CONNECTION_ERROR, SHOW_AUTH_ERROR }
@@ -32,6 +33,7 @@ class HomeViewModel @Inject constructor(private val popularArticlesRepository: P
     }
 
     fun getPopularArticles(request: PopularArticlesRequest) {
+        mLastestRequest = request
         showLoading()
         fetchArticles(request, object : RepoCallback<PopularArticlesApiResponse> {
             override fun onResult(result: Resource<PopularArticlesApiResponse, Resource.Status>) {
@@ -107,6 +109,10 @@ class HomeViewModel @Inject constructor(private val popularArticlesRepository: P
 
     fun unSubscribe() {
 
+    }
+
+    fun retry() {
+        getPopularArticles(mLastestRequest ?: PopularArticlesRequest())
     }
 
 }
