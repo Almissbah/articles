@@ -3,10 +3,10 @@ package com.almissbah.articles.di.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.almissbah.articles.di.factory.ViewModelFactory
 import com.almissbah.articles.ui.details.ArticleDetailsViewModel
 import com.almissbah.articles.ui.home.HomeViewModel
 import com.almissbah.articles.ui.splash.SplashViewModel
-import com.almugdad.takhlesy.di.factory.ViewModelFactory
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.almissbah.articles.R
 import com.almissbah.articles.data.remote.model.Article
 import com.almissbah.articles.databinding.ArticlesListItemBinding
+import com.bumptech.glide.Glide
 
 
 class ArticlesAdapter :
@@ -55,6 +56,11 @@ class ArticlesAdapter :
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article: Article = mList[holder.adapterPosition]
         holder.binding.article = article
+
+        Glide
+            .with(holder.binding.root.context)
+            .load(article.media.last().metaData.last().url).fitCenter().circleCrop()
+            .into(holder.binding.ivArticleImage)
         holder.binding.root.setOnClickListener {
             mItemClickListener?.onClicked(it, article, position)
         }

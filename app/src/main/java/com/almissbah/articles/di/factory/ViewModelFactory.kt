@@ -1,4 +1,4 @@
-package com.almugdad.takhlesy.di.factory
+package com.almissbah.articles.di.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

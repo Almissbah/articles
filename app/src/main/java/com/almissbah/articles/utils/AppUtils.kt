@@ -12,5 +12,9 @@ class AppUtils {
                 Intent(Intent.ACTION_VIEW, Uri.parse(url))
             context.startActivity(browserIntent)
         }
+
+        fun isValidUrl(): Boolean {
+            return true
+        }
     }
 }
